@@ -1,41 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+
+const Home = () => <h2>Welcome to the Homepage</h2>;
+const Services = () => <h2>Our Services</h2>;
+const Contact = () => <h2>Contact Us</h2>;
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  const increment = () => setCount(prev => prev + 1);
-  const decrement = () => setCount(prev => prev - 1);
-  const reset = () => setCount(0);
-
   return (
-    <div style={styles.container}>
-      <h1>React Counter</h1>
-      <p style={styles.count}>{count}</p>
-      <div>
-        <button onClick={decrement} style={styles.button}>-</button>
-        <button onClick={reset} style={styles.button}>Reset</button>
-        <button onClick={increment} style={styles.button}>+</button>
-      </div>
-    </div>
+    <Router>
+      <Header />
+      <main style={{ padding: '20px' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
+    </Router>
   );
 }
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '50px',
-    fontFamily: 'Arial, sans-serif',
-  },
-  count: {
-    fontSize: '48px',
-    margin: '20px 0',
-  },
-  button: {
-    padding: '10px 20px',
-    fontSize: '18px',
-    margin: '5px',
-    cursor: 'pointer',
-  },
-};
 
 export default App;
